@@ -175,5 +175,16 @@
 #         i+=1
 # print(sum)
 #16、用户登陆（三次机会重试）
-user_name=input('plz input your name: ')
-user_password=input('plz input your password: ')
+# count=0
+# while True:
+#     user_name=input('plz input your name: ')
+#     user_password=input('plz input your password: ')
+#     if user_name =='Tianle' and user_password=='123':
+#         print('登录成功')
+#         break
+#     else:
+#         print('用户名密码错误,请重试！')
+#         count+=1
+#         if count >=3:
+#             break
+
