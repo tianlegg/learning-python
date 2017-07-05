@@ -3,7 +3,7 @@
 #1、简述编译型与解释型语言的区别，且分别列出你知道的哪些语言属于编译型，哪些属于解释型
 #编译型语言是需要编译器编译后再运行的，解释型语言是直接逐行读取运行的；解释型语言：python、php、; 编译型语言：java、c、c++
 #2、执行 Python 脚本的两种方式是什么
-#一种是文件头标记python解释器，直接运行文件；第二种是python解释器路径+文件名
+#一种是通过运行python文件的形式；另一种是在python解释器里编写python代码即时执行的
 #3、 Pyhton 单行注释和多行注释分别用什么?
 #单行注释“#”，多行注释''' '''
 #4、布尔值分别有什么？
@@ -188,3 +188,73 @@
 #         if count >=3:
 #             break
 
+
+
+#作业编写登陆接口
+# 基础需求：
+# 让用户输入用户名密码
+# 认证成功后显示欢迎信息
+# 输错三次后退出程序
+# user_info={'name':'Tianle','password':'123'}
+# count=0
+# while count < 3:
+#     user_name=input('plz input your name: ')
+#     user_password=input('plz input your password: ')
+#     if user_name ==user_info['name'] and user_password==user_info['password']:
+#         print('登录成功')
+#         break
+#     else:
+#         print('帐号密码错误，请重试')
+#         count+=1
+# 升级需求：
+# 可以支持多个用户登录 (提示，通过列表存多个账户信息)
+# 用户3次认证失败后，退出程序，再次启动程序尝试登录时，还是锁定状态（提示:需把用户锁定的状态存到文件里）
+# user_info=[
+#     {'name':'Tianle','password':'123'},
+#     {'name':'Lele','password':'456'},
+#     {'name':'Xixi','password':'789'}
+# ]
+# count=0
+# while count < 3:
+#     user_name=input('plz input your name: ')
+#     user_password=input('plz input your password: ')
+#     if user_name ==user_info[0]['name'] and user_password==user_info[0]['password']:
+#         print('登录成功')
+#         break
+#     elif user_name ==user_info[1]['name'] and user_password==user_info[1]['password']:
+#         print('登录成功')
+#         break
+#     elif user_name ==user_info[2]['name'] and user_password==user_info[2]['password']:
+#         print('登录成功')
+#         break
+#     else:
+#         print('帐号密码错误，请重试')
+#         count+=1
+user_info={
+        'Tianle':{'password':'123','time':0},
+        'Lele':{'password':'456','time':0},
+        'Xixi':{'password':'789','time':0}
+         }
+# user_info['Tianle']['time']+=1
+# print(user_info['Tianle']['time'])
+tag=True
+while tag:
+    user_name=input('plz input your name: ')
+    user_password=input('plz input your password: ')
+    if user_name not in user_info:
+        print('user not exist')
+        continue
+    else:
+        if user_password==user_info[user_name]['password']:
+            print('login sucessful!')
+            tag=False
+        else:
+            user_info[user_name]['time']=user_info[user_name]['time']+1
+            print('password error,plz input agin!', user_info[user_name]['time'])
+            if user_info[user_name]['time'] >=3:
+                tag=False
+
+
+# f=open('user_info_db.txt','w')
+# f.write(user_info)
+# f.close()
