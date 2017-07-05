@@ -240,12 +240,19 @@ user_info={
 tag=True
 while tag:
     user_name=input('plz input your name: ')
-    user_password=input('plz input your password: ')
-    if user_name not in user_info:
+    if len(user_name)==0:
+        print('input can not empty')
+    elif user_name not in user_info:
         print('user not exist')
         continue
+    elif user_info[user_name]['time'] >= 3:
+        print('user locked!')
+        continue
     else:
-        if user_password==user_info[user_name]['password']:
+        user_password = input('plz input your password: ')
+        if len(user_password) == 0:
+            print('input can not empty')
+        elif user_password==user_info[user_name]['password']:
             print('login sucessful!')
             tag=False
         else:
@@ -253,6 +260,7 @@ while tag:
             print('password error,plz input agin!', user_info[user_name]['time'])
             if user_info[user_name]['time'] >=3:
                 tag=False
+print(user_info)
 
 
 # f=open('user_info_db.txt','w')
